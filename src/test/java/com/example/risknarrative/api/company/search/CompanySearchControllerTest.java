@@ -1,5 +1,6 @@
 package com.example.risknarrative.api.company.search;
 
+import com.example.risknarrative.services.company.CompanyService;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -10,9 +11,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static com.example.risknarrative.api.company.search.AddressBuilder.anAddress;
-import static com.example.risknarrative.api.company.search.ItemBuilder.anItem;
-import static com.example.risknarrative.api.company.search.OfficerBuilder.anOfficer;
+import static com.example.risknarrative.domain.AddressBuilder.anAddress;
+import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -23,16 +24,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CompanySearchController.class)
 class CompanySearchControllerTest {
 
-
     @MockBean
-    private CompanySearchService companySearchService;
+    private CompanyService companySearchService;
 
     @Test
     void searchWithCompanyNumberAndCompanyName(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.searchByNumber("some-company-number")).willReturn(
+        given(companySearchService.recordsByCompanyNumber("some-api-key", "some-company-number")).willReturn(
                 List.of(
-                        anItem()
+                        aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
                                 .withCompanyType("some-company-type")
                                 .withTitle("some-title")
@@ -60,7 +60,7 @@ class CompanySearchControllerTest {
                                                                 .withCountry("some-officer-country")
                                                 )
                                 ).build(),
-                        anItem()
+                        aCompanyRecord()
                                 .withCompanyNumber("another-company-number")
                                 .withCompanyType("another-company-type")
                                 .withTitle("another-title")
@@ -157,6 +157,7 @@ class CompanySearchControllerTest {
 
         var actualSearchResults = mvc.perform(
                         post("/api/company/search")
+                                .header("x-api-key", "some-api-key")
                                 .contentType(APPLICATION_JSON) //TODO: Other Content Types
                                 .content("""
                                         {
@@ -172,7 +173,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).searchByNumber("some-company-number");
+        verify(companySearchService).recordsByCompanyNumber("some-api-key", "some-company-number");
 
         JSONAssert.assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }

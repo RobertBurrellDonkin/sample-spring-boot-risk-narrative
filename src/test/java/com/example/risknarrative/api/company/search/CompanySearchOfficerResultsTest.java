@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
-import static com.example.risknarrative.api.company.search.AddressBuilder.anAddress;
-import static com.example.risknarrative.api.company.search.ItemBuilder.anItem;
-import static com.example.risknarrative.api.company.search.OfficerBuilder.anOfficer;
 import static com.example.risknarrative.api.company.search.SearchResultsTestBuilder.searchResults;
+import static com.example.risknarrative.domain.AddressBuilder.anAddress;
+import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
-class CompanySearchJsonTests {
+class CompanySearchOfficerResultsTest {
 
     @Nested
     class CompanySearchTests {
@@ -40,9 +40,9 @@ class CompanySearchJsonTests {
 
 
     @Nested
-    class SearchResultsTests {
+    class CompanySearchResultsTests {
         @Autowired
-        private JacksonTester<SearchResults> json;
+        private JacksonTester<CompanySearchResults> json;
 
         @Nested
         class SerializationTests {
@@ -51,7 +51,7 @@ class CompanySearchJsonTests {
                 var searchResults =
                         searchResults()
                                 .withItems(
-                                        anItem()
+                                        aCompanyRecord()
                                                 .withCompanyNumber("some-company-number")
                                                 .withCompanyType("some-company-type")
                                                 .withTitle("some-title")

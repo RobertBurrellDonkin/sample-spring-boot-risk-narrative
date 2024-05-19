@@ -1,4 +1,4 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative.domain;
 
 public class OfficerBuilder {
 

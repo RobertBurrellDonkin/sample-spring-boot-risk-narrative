@@ -4,3 +4,7 @@ spring:
 
     jackson:
         property-naming-strategy: SNAKE_CASE
+
+truproxy:
+    base:
+        url: https://exercise.trunarrative.cloud/

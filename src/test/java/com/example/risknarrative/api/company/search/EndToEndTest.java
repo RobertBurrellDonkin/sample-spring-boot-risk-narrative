@@ -1,4 +1,4 @@
-package com.example.risknarrative;
+package com.example.risknarrative.api.company.search;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.*;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 0)
 @AutoConfigureMockMvc
-public class IntegrationTests {
+public class EndToEndTest {
 
     public static final String COMPANY_SEARCH_URL = "/api/company/search";
     public static WireMockServer wiremock = new WireMockServer(options().dynamicPort());

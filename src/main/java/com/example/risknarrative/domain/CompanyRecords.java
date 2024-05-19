@@ -1,8 +1,8 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative.domain;
 
 import java.util.List;
 
-public record Item(
+public record CompanyRecords(
         String companyNumber,
         String companyType,
         String title,
