@@ -142,10 +142,12 @@ class CompanyServiceTest {
 
         var companyRecords = subjectUnderTest.recordsByCompanyNumber("some-api-key", "some-company-number");
 
-        verify(getRequestedFor(urlEqualTo(TRU_PROXY_SEARCH_PATH + "?Query=some-company-number"))
+        verify(getRequestedFor(urlPathEqualTo(TRU_PROXY_SEARCH_PATH ))
+                .withQueryParam("Query", equalTo("some-company-number"))
                 .withHeader("Accept", equalTo("application/json"))
                 .withHeader(X_API_KEY, equalTo("some-api-key")));
-        verify(getRequestedFor(urlEqualTo(TRU_PROXY_OFFICERS_PATH + "?CompanyNumber=some-company-number"))
+        verify(getRequestedFor(urlPathEqualTo(TRU_PROXY_OFFICERS_PATH))
+                .withQueryParam("CompanyNumber", equalTo("some-company-number"))
                 .withHeader("Accept", equalTo("application/json"))
                 .withHeader(X_API_KEY, equalTo("some-api-key")));
 
