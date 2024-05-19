@@ -33,10 +33,13 @@ public class CompanyService {
                 .toList();
     }
 
-    private CompanyResults getCompanyResults(String apiKey, String number) {
+    private CompanyResults getCompanyResults(String apiKey, String searchTerm) {
         return webClient()
                 .get()
-                .uri("Search?Query={search_term}", number)
+                .uri(uriBuilder -> uriBuilder
+                        .path("/Search")
+                        .queryParam("Query", searchTerm)
+                        .build())
                 .header("x-api-key", apiKey)
                 .retrieve()
                 .bodyToMono(CompanyResults.class)
@@ -47,7 +50,10 @@ public class CompanyService {
     private OfficerResults getOfficers(String apiKey, String number) {
         return webClient()
                 .get()
-                .uri("Officers?CompanyNumber={number}", number)
+                .uri(uriBuilder -> uriBuilder
+                        .path("/Officers")
+                        .queryParam("CompanyNumber", number)
+                        .build())
                 .header("x-api-key", apiKey)
                 .retrieve()
                 .bodyToMono(OfficerResults.class)

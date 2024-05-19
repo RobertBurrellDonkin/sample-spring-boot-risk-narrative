@@ -51,90 +51,94 @@ class CompanyServiceTest {
 
     @Test
     public void recordsByCompanyNumber() {
-        stubFor(get(urlPathEqualTo(TRU_PROXY_SEARCH_PATH)).willReturn(
-                aResponse()
-                        .withHeader("Content-Type", "application/json")
-                        .withBody(
-                                """
-                                         {
-                                            "page_number": 1,
-                                            "kind": "search#companies",
-                                            "total_results": 20,
-                                            "items": [
-                                                {
-                                                    "company_status": "some-company-status",
-                                                    "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
-                                                    "date_of_creation": "some-date-of-creation",
-                                                    "matches": {
-                                                        "title": [
-                                                            1,
-                                                            3
-                                                        ]
-                                                    },
-                                                    "description": "06500244 - Incorporated on 11 February 2008",
-                                                    "links": {
-                                                        "self": "/company/06500244"
-                                                    },
-                                                    "company_number": "some-company-number",
-                                                    "title": "some-title",
-                                                    "company_type": "some-company-type",
-                                                    "address": {
-                                                        "premises": "some-company-premises",
-                                                        "postal_code": "some-company-postal-code",
-                                                        "country": "some-company-country",
-                                                        "locality": "some-company-locality",
-                                                        "address_line_1": "some-company-address-line"
-                                                    },
-                                                    "kind": "searchresults#company",
-                                                    "description_identifier": [
-                                                        "incorporated-on"
-                                                    ]
-                                                }]
-                                          }
+        stubFor(get(urlPathEqualTo(TRU_PROXY_SEARCH_PATH))
+                .withQueryParam("Query", equalTo("some-company-number"))
+                .willReturn(
+                        aResponse()
+                                .withHeader("Content-Type", "application/json")
+                                .withBody(
                                         """
-                        )));
+                                                 {
+                                                    "page_number": 1,
+                                                    "kind": "search#companies",
+                                                    "total_results": 20,
+                                                    "items": [
+                                                        {
+                                                            "company_status": "some-company-status",
+                                                            "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
+                                                            "date_of_creation": "some-date-of-creation",
+                                                            "matches": {
+                                                                "title": [
+                                                                    1,
+                                                                    3
+                                                                ]
+                                                            },
+                                                            "description": "06500244 - Incorporated on 11 February 2008",
+                                                            "links": {
+                                                                "self": "/company/06500244"
+                                                            },
+                                                            "company_number": "some-company-number",
+                                                            "title": "some-title",
+                                                            "company_type": "some-company-type",
+                                                            "address": {
+                                                                "premises": "some-company-premises",
+                                                                "postal_code": "some-company-postal-code",
+                                                                "country": "some-company-country",
+                                                                "locality": "some-company-locality",
+                                                                "address_line_1": "some-company-address-line"
+                                                            },
+                                                            "kind": "searchresults#company",
+                                                            "description_identifier": [
+                                                                "incorporated-on"
+                                                            ]
+                                                        }]
+                                                  }
+                                                """
+                                )));
 
-        stubFor(get(urlPathEqualTo(TRU_PROXY_OFFICERS_PATH)).willReturn(
-                aResponse()
-                        .withHeader("Content-Type", "application/json")
-                        .withBody(
-                                """
-                                        {
-                                               "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
-                                               "links": {
-                                                   "self": "/company/10241297/officers"
-                                               },
-                                               "kind": "officer-list",
-                                               "items_per_page": 35,
-                                               "items": [
-                                                   {
-                                                       "address": {
-                                                           "premises": "some-officer-premises",
-                                                           "postal_code": "some-officer-postal-code",
-                                                           "country": "some-officer-country",
-                                                           "locality": "some-officer-locality",
-                                                           "address_line_1": "some-officer-address-line"
-                                                       },
-                                                       "name": "some-officer-name",
-                                                       "appointed_on": "some-appointed-on",
-                                                       "resigned_on": "2018-02-12",
-                                                       "officer_role": "some-officer-role",
-                                                       "links": {
-                                                           "officer": {
-                                                               "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
-                                                           }
-                                                       },
-                                                       "date_of_birth": {
-                                                           "month": 6,
-                                                           "year": 1969
-                                                       },
-                                                       "occupation": "Finance And Accounting",
-                                                       "country_of_residence": "United States",
-                                                       "nationality": "American"
-                                                   }]
-                                             }
+        stubFor(get(urlPathEqualTo(TRU_PROXY_OFFICERS_PATH))
+                .withQueryParam("CompanyNumber", equalTo("some-company-number"))
+                .willReturn(
+                        aResponse()
+                                .withHeader("Content-Type", "application/json")
+                                .withBody(
                                         """
-                        )));
+                                                {
+                                                       "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
+                                                       "links": {
+                                                           "self": "/company/10241297/officers"
+                                                       },
+                                                       "kind": "officer-list",
+                                                       "items_per_page": 35,
+                                                       "items": [
+                                                           {
+                                                               "address": {
+                                                                   "premises": "some-officer-premises",
+                                                                   "postal_code": "some-officer-postal-code",
+                                                                   "country": "some-officer-country",
+                                                                   "locality": "some-officer-locality",
+                                                                   "address_line_1": "some-officer-address-line"
+                                                               },
+                                                               "name": "some-officer-name",
+                                                               "appointed_on": "some-appointed-on",
+                                                               "resigned_on": "2018-02-12",
+                                                               "officer_role": "some-officer-role",
+                                                               "links": {
+                                                                   "officer": {
+                                                                       "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
+                                                                   }
+                                                               },
+                                                               "date_of_birth": {
+                                                                   "month": 6,
+                                                                   "year": 1969
+                                                               },
+                                                               "occupation": "Finance And Accounting",
+                                                               "country_of_residence": "United States",
+                                                               "nationality": "American"
+                                                           }]
+                                                     }
+                                                """
+                                )));
 
         var companyRecords = subjectUnderTest.recordsByCompanyNumber("some-api-key", "some-company-number");
 
