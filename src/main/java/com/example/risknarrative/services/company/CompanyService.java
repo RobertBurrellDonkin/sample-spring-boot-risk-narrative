@@ -21,9 +21,9 @@ public class CompanyService {
         this.webClientBuilder = webClientBuilder;
     }
 
-    public List<CompanyRecords> recordsByCompanyNumber(String apiKey, String number) {
+    public List<CompanyRecords> search(String apiKey, String searchTerm) {
         //TODO
-        return getCompanyResults(apiKey, number)
+        return getCompanyResults(apiKey, searchTerm)
                 .items()
                 .stream()
                 .map(company ->

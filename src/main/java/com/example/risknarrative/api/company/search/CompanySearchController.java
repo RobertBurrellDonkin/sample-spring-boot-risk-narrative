@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
 @RestController
 public class CompanySearchController {
 
@@ -19,7 +21,9 @@ public class CompanySearchController {
     public CompanySearchResults search(
             @RequestHeader("x-api-key") String apiKey,
             @RequestBody CompanySearch companySearch) {
-        final var items = companySearchService.recordsByCompanyNumber(apiKey, companySearch.companyNumber());
-        return new CompanySearchResults(items.size(), items);
+        final var companyRecords = companySearchService.search(
+                apiKey,
+                isBlank(companySearch.companyNumber()) ? companySearch.companyName() : companySearch.companyNumber());
+        return new CompanySearchResults(companyRecords.size(), companyRecords);
     }
 }
