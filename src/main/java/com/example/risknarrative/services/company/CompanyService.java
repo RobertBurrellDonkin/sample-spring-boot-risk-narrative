@@ -14,7 +14,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CompanyService {
     private final WebClient.Builder webClientBuilder;
 
-    @Value("truproxy.base.url")
+    @Value("${truproxy.base.url}")
     private String truProxyBaseUrl;
 
     public CompanyService(WebClient.Builder webClientBuilder) {
