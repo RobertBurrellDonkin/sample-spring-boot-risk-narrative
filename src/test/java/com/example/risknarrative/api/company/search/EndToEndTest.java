@@ -73,122 +73,122 @@ public class EndToEndTest {
         givenTruProxySearchWilLReturn(
                 companyNumber,
                 """
-                                {
-                                  "page_number": 1,
-                                  "kind": "search#companies",
-                                  "total_results": 20,
-                                  "items": [
-                                      {
-                                          "company_status": "active",
-                                          "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
-                                          "date_of_creation": "2008-02-11",
-                                          "matches": {
-                                              "title": [
-                                                  1,
-                                                  3
-                                              ]
-                                          },
-                                          "description": "06500244 - Incorporated on 11 February 2008",
-                                          "links": {
-                                              "self": "/company/06500244"
-                                          },
-                                          "company_number": "06500244",
-                                          "title": "BBC LIMITED",
-                                          "company_type": "ltd",
-                                          "address": {
-                                              "premises": "Boswell Cottage Main Street",
-                                              "postal_code": "DN22 0AD",
-                                              "country": "England",
-                                              "locality": "Retford",
-                                              "address_line_1": "North Leverton"
-                                          },
-                                          "kind": "searchresults#company",
-                                          "description_identifier": [
-                                              "incorporated-on"
-                                          ]
-                                      }]
-                                }
-                               """);
+                         {
+                           "page_number": 1,
+                           "kind": "search#companies",
+                           "total_results": 20,
+                           "items": [
+                               {
+                                   "company_status": "active",
+                                   "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
+                                   "date_of_creation": "2008-02-11",
+                                   "matches": {
+                                       "title": [
+                                           1,
+                                           3
+                                       ]
+                                   },
+                                   "description": "06500244 - Incorporated on 11 February 2008",
+                                   "links": {
+                                       "self": "/company/06500244"
+                                   },
+                                   "company_number": "06500244",
+                                   "title": "BBC LIMITED",
+                                   "company_type": "ltd",
+                                   "address": {
+                                       "premises": "Boswell Cottage Main Street",
+                                       "postal_code": "DN22 0AD",
+                                       "country": "England",
+                                       "locality": "Retford",
+                                       "address_line_1": "North Leverton"
+                                   },
+                                   "kind": "searchresults#company",
+                                   "description_identifier": [
+                                       "incorporated-on"
+                                   ]
+                               }]
+                         }
+                        """);
 
 
         givenTruProxyGetOfficersWillReturn(
                 companyNumber,
                 """
-                                       {
-                                           "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
-                                           "links": {
-                                               "self": "/company/10241297/officers"
-                                           },
-                                           "kind": "officer-list",
-                                           "items_per_page": 35,
-                                           "items": [
-                                               {
-                                                   "address": {
-                                                       "premises": "The Leeming Building",
-                                                       "postal_code": "LS2 7JF",
-                                                       "country": "England",
-                                                       "locality": "Leeds",
-                                                       "address_line_1": "Vicar Lane"
-                                                   },
-                                                   "name": "ANTLES, Kerri",
-                                                   "appointed_on": "2017-04-01",
-                                                   "resigned_on": "2018-02-12",
-                                                   "officer_role": "director",
-                                                   "links": {
-                                                       "officer": {
-                                                           "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
-                                                       }
-                                                   },
-                                                   "date_of_birth": {
-                                                       "month": 6,
-                                                       "year": 1969
-                                                   },
-                                                   "occupation": "Finance And Accounting",
-                                                   "country_of_residence": "United States",
-                                                   "nationality": "American"
-                                               }]
-                                         }
-                               """);
+                                {
+                                    "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
+                                    "links": {
+                                        "self": "/company/10241297/officers"
+                                    },
+                                    "kind": "officer-list",
+                                    "items_per_page": 35,
+                                    "items": [
+                                        {
+                                            "address": {
+                                                "premises": "The Leeming Building",
+                                                "postal_code": "LS2 7JF",
+                                                "country": "England",
+                                                "locality": "Leeds",
+                                                "address_line_1": "Vicar Lane"
+                                            },
+                                            "name": "ANTLES, Kerri",
+                                            "appointed_on": "2017-04-01",
+                                            "resigned_on": "2018-02-12",
+                                            "officer_role": "director",
+                                            "links": {
+                                                "officer": {
+                                                    "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
+                                                }
+                                            },
+                                            "date_of_birth": {
+                                                "month": 6,
+                                                "year": 1969
+                                            },
+                                            "occupation": "Finance And Accounting",
+                                            "country_of_residence": "United States",
+                                            "nationality": "American"
+                                        }]
+                                  }
+                        """);
 
 
         var apiKey = "some-api-key";
         var actualSearchResults = search(mvc, apiKey, query);
 
         assertEquals("""
-                {
-                    "total_results": 1,
-                    "items": [
                         {
-                            "company_number": "06500244",
-                            "company_type": "ltd",
-                            "title": "BBC LIMITED",
-                            "company_status": "active",
-                            "date_of_creation": "2008-02-11",
-                            "address": {
-                                "locality": "Retford",
-                                "postal_code": "DN22 0AD",
-                                "premises": "Boswell Cottage Main Street",
-                                "address_line_1": "North Leverton",
-                                "country": "England"
-                            },
-                            "officers": [
+                            "total_results": 1,
+                            "items": [
                                 {
-                                    "name": "ANTLES, Kerri",
-                                    "officer_role": "director",
-                                    "appointed_on": "2017-04-01",
+                                    "company_number": "06500244",
+                                    "company_type": "ltd",
+                                    "title": "BBC LIMITED",
+                                    "company_status": "active",
+                                    "date_of_creation": "2008-02-11",
                                     "address": {
-                                        "premises": "The Leeming Building",
-                                        "locality": "Leeds",
-                                        "address_line_1": "Vicar Lane",
-                                        "country": "England",
-                                        "postal_code": "LS2 7JF"
-                                    }
+                                        "locality": "Retford",
+                                        "postal_code": "DN22 0AD",
+                                        "premises": "Boswell Cottage Main Street",
+                                        "address_line_1": "North Leverton",
+                                        "country": "England"
+                                    },
+                                    "officers": [
+                                        {
+                                            "name": "ANTLES, Kerri",
+                                            "officer_role": "director",
+                                            "appointed_on": "2017-04-01",
+                                            "address": {
+                                                "premises": "The Leeming Building",
+                                                "locality": "Leeds",
+                                                "address_line_1": "Vicar Lane",
+                                                "country": "England",
+                                                "postal_code": "LS2 7JF"
+                                            }
+                                        }
+                                    ]
                                 }
                             ]
                         }
-                    ]
-                }
-                """,
+                        """,
                 actualSearchResults,
                 STRICT);
 
@@ -215,122 +215,122 @@ public class EndToEndTest {
         givenTruProxySearchWilLReturn(
                 companyNumber,
                 """
-                                {
-                                  "page_number": 1,
-                                  "kind": "search#companies",
-                                  "total_results": 20,
-                                  "items": [
-                                      {
-                                          "company_status": "active",
-                                          "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
-                                          "date_of_creation": "2008-02-11",
-                                          "matches": {
-                                              "title": [
-                                                  1,
-                                                  3
-                                              ]
-                                          },
-                                          "description": "06500244 - Incorporated on 11 February 2008",
-                                          "links": {
-                                              "self": "/company/06500244"
-                                          },
-                                          "company_number": "06500244",
-                                          "title": "BBC LIMITED",
-                                          "company_type": "ltd",
-                                          "address": {
-                                              "premises": "Boswell Cottage Main Street",
-                                              "postal_code": "DN22 0AD",
-                                              "country": "England",
-                                              "locality": "Retford",
-                                              "address_line_1": "North Leverton"
-                                          },
-                                          "kind": "searchresults#company",
-                                          "description_identifier": [
-                                              "incorporated-on"
-                                          ]
-                                      }]
-                                }
-                               """);
+                         {
+                           "page_number": 1,
+                           "kind": "search#companies",
+                           "total_results": 20,
+                           "items": [
+                               {
+                                   "company_status": "active",
+                                   "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
+                                   "date_of_creation": "2008-02-11",
+                                   "matches": {
+                                       "title": [
+                                           1,
+                                           3
+                                       ]
+                                   },
+                                   "description": "06500244 - Incorporated on 11 February 2008",
+                                   "links": {
+                                       "self": "/company/06500244"
+                                   },
+                                   "company_number": "06500244",
+                                   "title": "BBC LIMITED",
+                                   "company_type": "ltd",
+                                   "address": {
+                                       "premises": "Boswell Cottage Main Street",
+                                       "postal_code": "DN22 0AD",
+                                       "country": "England",
+                                       "locality": "Retford",
+                                       "address_line_1": "North Leverton"
+                                   },
+                                   "kind": "searchresults#company",
+                                   "description_identifier": [
+                                       "incorporated-on"
+                                   ]
+                               }]
+                         }
+                        """);
 
 
         givenTruProxyGetOfficersWillReturn(
                 companyNumber,
                 """
-                                       {
-                                           "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
-                                           "links": {
-                                               "self": "/company/10241297/officers"
-                                           },
-                                           "kind": "officer-list",
-                                           "items_per_page": 35,
-                                           "items": [
-                                               {
-                                                   "address": {
-                                                       "premises": "The Leeming Building",
-                                                       "postal_code": "LS2 7JF",
-                                                       "country": "England",
-                                                       "locality": "Leeds",
-                                                       "address_line_1": "Vicar Lane"
-                                                   },
-                                                   "name": "ANTLES, Kerri",
-                                                   "appointed_on": "2017-04-01",
-                                                   "resigned_on": "2018-02-12",
-                                                   "officer_role": "director",
-                                                   "links": {
-                                                       "officer": {
-                                                           "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
-                                                       }
-                                                   },
-                                                   "date_of_birth": {
-                                                       "month": 6,
-                                                       "year": 1969
-                                                   },
-                                                   "occupation": "Finance And Accounting",
-                                                   "country_of_residence": "United States",
-                                                   "nationality": "American"
-                                               }]
-                                         }
-                               """);
+                                {
+                                    "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
+                                    "links": {
+                                        "self": "/company/10241297/officers"
+                                    },
+                                    "kind": "officer-list",
+                                    "items_per_page": 35,
+                                    "items": [
+                                        {
+                                            "address": {
+                                                "premises": "The Leeming Building",
+                                                "postal_code": "LS2 7JF",
+                                                "country": "England",
+                                                "locality": "Leeds",
+                                                "address_line_1": "Vicar Lane"
+                                            },
+                                            "name": "ANTLES, Kerri",
+                                            "appointed_on": "2017-04-01",
+                                            "resigned_on": "2018-02-12",
+                                            "officer_role": "director",
+                                            "links": {
+                                                "officer": {
+                                                    "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
+                                                }
+                                            },
+                                            "date_of_birth": {
+                                                "month": 6,
+                                                "year": 1969
+                                            },
+                                            "occupation": "Finance And Accounting",
+                                            "country_of_residence": "United States",
+                                            "nationality": "American"
+                                        }]
+                                  }
+                        """);
 
 
         var apiKey = "some-api-key";
         var actualSearchResults = search(mvc, apiKey, query);
 
         assertEquals("""
-                {
-                    "total_results": 1,
-                    "items": [
                         {
-                            "company_number": "06500244",
-                            "company_type": "ltd",
-                            "title": "BBC LIMITED",
-                            "company_status": "active",
-                            "date_of_creation": "2008-02-11",
-                            "address": {
-                                "locality": "Retford",
-                                "postal_code": "DN22 0AD",
-                                "premises": "Boswell Cottage Main Street",
-                                "address_line_1": "North Leverton",
-                                "country": "England"
-                            },
-                            "officers": [
+                            "total_results": 1,
+                            "items": [
                                 {
-                                    "name": "ANTLES, Kerri",
-                                    "officer_role": "director",
-                                    "appointed_on": "2017-04-01",
+                                    "company_number": "06500244",
+                                    "company_type": "ltd",
+                                    "title": "BBC LIMITED",
+                                    "company_status": "active",
+                                    "date_of_creation": "2008-02-11",
                                     "address": {
-                                        "premises": "The Leeming Building",
-                                        "locality": "Leeds",
-                                        "address_line_1": "Vicar Lane",
-                                        "country": "England",
-                                        "postal_code": "LS2 7JF"
-                                    }
+                                        "locality": "Retford",
+                                        "postal_code": "DN22 0AD",
+                                        "premises": "Boswell Cottage Main Street",
+                                        "address_line_1": "North Leverton",
+                                        "country": "England"
+                                    },
+                                    "officers": [
+                                        {
+                                            "name": "ANTLES, Kerri",
+                                            "officer_role": "director",
+                                            "appointed_on": "2017-04-01",
+                                            "address": {
+                                                "premises": "The Leeming Building",
+                                                "locality": "Leeds",
+                                                "address_line_1": "Vicar Lane",
+                                                "country": "England",
+                                                "postal_code": "LS2 7JF"
+                                            }
+                                        }
+                                    ]
                                 }
                             ]
                         }
-                    ]
-                }
-                """,
+                        """,
                 actualSearchResults,
                 STRICT);
 
@@ -358,122 +358,122 @@ public class EndToEndTest {
         givenTruProxySearchWilLReturn(
                 companyName,
                 """
-                                {
-                                  "page_number": 1,
-                                  "kind": "search#companies",
-                                  "total_results": 20,
-                                  "items": [
-                                      {
-                                          "company_status": "active",
-                                          "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
-                                          "date_of_creation": "2008-02-11",
-                                          "matches": {
-                                              "title": [
-                                                  1,
-                                                  3
-                                              ]
-                                          },
-                                          "description": "06500244 - Incorporated on 11 February 2008",
-                                          "links": {
-                                              "self": "/company/06500244"
-                                          },
-                                          "company_number": "06500244",
-                                          "title": "BBC LIMITED",
-                                          "company_type": "ltd",
-                                          "address": {
-                                              "premises": "Boswell Cottage Main Street",
-                                              "postal_code": "DN22 0AD",
-                                              "country": "England",
-                                              "locality": "Retford",
-                                              "address_line_1": "North Leverton"
-                                          },
-                                          "kind": "searchresults#company",
-                                          "description_identifier": [
-                                              "incorporated-on"
-                                          ]
-                                      }]
-                                }
-                               """);
+                         {
+                           "page_number": 1,
+                           "kind": "search#companies",
+                           "total_results": 20,
+                           "items": [
+                               {
+                                   "company_status": "active",
+                                   "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
+                                   "date_of_creation": "2008-02-11",
+                                   "matches": {
+                                       "title": [
+                                           1,
+                                           3
+                                       ]
+                                   },
+                                   "description": "06500244 - Incorporated on 11 February 2008",
+                                   "links": {
+                                       "self": "/company/06500244"
+                                   },
+                                   "company_number": "06500244",
+                                   "title": "BBC LIMITED",
+                                   "company_type": "ltd",
+                                   "address": {
+                                       "premises": "Boswell Cottage Main Street",
+                                       "postal_code": "DN22 0AD",
+                                       "country": "England",
+                                       "locality": "Retford",
+                                       "address_line_1": "North Leverton"
+                                   },
+                                   "kind": "searchresults#company",
+                                   "description_identifier": [
+                                       "incorporated-on"
+                                   ]
+                               }]
+                         }
+                        """);
 
 
         givenTruProxyGetOfficersWillReturn(
                 companyNumber,
                 """
-                                       {
-                                           "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
-                                           "links": {
-                                               "self": "/company/10241297/officers"
-                                           },
-                                           "kind": "officer-list",
-                                           "items_per_page": 35,
-                                           "items": [
-                                               {
-                                                   "address": {
-                                                       "premises": "The Leeming Building",
-                                                       "postal_code": "LS2 7JF",
-                                                       "country": "England",
-                                                       "locality": "Leeds",
-                                                       "address_line_1": "Vicar Lane"
-                                                   },
-                                                   "name": "ANTLES, Kerri",
-                                                   "appointed_on": "2017-04-01",
-                                                   "resigned_on": "2018-02-12",
-                                                   "officer_role": "director",
-                                                   "links": {
-                                                       "officer": {
-                                                           "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
-                                                       }
-                                                   },
-                                                   "date_of_birth": {
-                                                       "month": 6,
-                                                       "year": 1969
-                                                   },
-                                                   "occupation": "Finance And Accounting",
-                                                   "country_of_residence": "United States",
-                                                   "nationality": "American"
-                                               }]
-                                         }
-                               """);
+                                {
+                                    "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
+                                    "links": {
+                                        "self": "/company/10241297/officers"
+                                    },
+                                    "kind": "officer-list",
+                                    "items_per_page": 35,
+                                    "items": [
+                                        {
+                                            "address": {
+                                                "premises": "The Leeming Building",
+                                                "postal_code": "LS2 7JF",
+                                                "country": "England",
+                                                "locality": "Leeds",
+                                                "address_line_1": "Vicar Lane"
+                                            },
+                                            "name": "ANTLES, Kerri",
+                                            "appointed_on": "2017-04-01",
+                                            "resigned_on": "2018-02-12",
+                                            "officer_role": "director",
+                                            "links": {
+                                                "officer": {
+                                                    "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
+                                                }
+                                            },
+                                            "date_of_birth": {
+                                                "month": 6,
+                                                "year": 1969
+                                            },
+                                            "occupation": "Finance And Accounting",
+                                            "country_of_residence": "United States",
+                                            "nationality": "American"
+                                        }]
+                                  }
+                        """);
 
 
         var apiKey = "some-api-key";
         var actualSearchResults = search(mvc, apiKey, query);
 
         assertEquals("""
-                {
-                    "total_results": 1,
-                    "items": [
                         {
-                            "company_number": "06500244",
-                            "company_type": "ltd",
-                            "title": "BBC LIMITED",
-                            "company_status": "active",
-                            "date_of_creation": "2008-02-11",
-                            "address": {
-                                "locality": "Retford",
-                                "postal_code": "DN22 0AD",
-                                "premises": "Boswell Cottage Main Street",
-                                "address_line_1": "North Leverton",
-                                "country": "England"
-                            },
-                            "officers": [
+                            "total_results": 1,
+                            "items": [
                                 {
-                                    "name": "ANTLES, Kerri",
-                                    "officer_role": "director",
-                                    "appointed_on": "2017-04-01",
+                                    "company_number": "06500244",
+                                    "company_type": "ltd",
+                                    "title": "BBC LIMITED",
+                                    "company_status": "active",
+                                    "date_of_creation": "2008-02-11",
                                     "address": {
-                                        "premises": "The Leeming Building",
-                                        "locality": "Leeds",
-                                        "address_line_1": "Vicar Lane",
-                                        "country": "England",
-                                        "postal_code": "LS2 7JF"
-                                    }
+                                        "locality": "Retford",
+                                        "postal_code": "DN22 0AD",
+                                        "premises": "Boswell Cottage Main Street",
+                                        "address_line_1": "North Leverton",
+                                        "country": "England"
+                                    },
+                                    "officers": [
+                                        {
+                                            "name": "ANTLES, Kerri",
+                                            "officer_role": "director",
+                                            "appointed_on": "2017-04-01",
+                                            "address": {
+                                                "premises": "The Leeming Building",
+                                                "locality": "Leeds",
+                                                "address_line_1": "Vicar Lane",
+                                                "country": "England",
+                                                "postal_code": "LS2 7JF"
+                                            }
+                                        }
+                                    ]
                                 }
                             ]
                         }
-                    ]
-                }
-                """,
+                        """,
                 actualSearchResults,
                 STRICT);
 
@@ -490,13 +490,22 @@ public class EndToEndTest {
     @Test
     @Disabled
     void searchWithoutBodyShouldBeABadRequest(@Autowired MockMvc mvc) throws Exception {
-        fail("TODO");
+        mvc.perform(post(COMPANY_SEARCH_URL)
+                        .contentType(APPLICATION_JSON)
+                        .header(X_API_KEY, "some-api-key"))
+                .andExpect(
+                        status().isBadRequest());
+
     }
 
     @Test
     @Disabled
-    void searchWithoutAnApiKeyShouldBeForbidden(@Autowired MockMvc mvc) throws Exception {
-        fail("TODO");
+    void searchWithoutAnApiKeyShouldBeABadRequest(@Autowired MockMvc mvc) throws Exception {
+        mvc.perform(post(COMPANY_SEARCH_URL)
+                        .contentType(APPLICATION_JSON)
+                        .header(X_API_KEY, "some-api-key"))
+                .andExpect(
+                        status().isBadRequest());
     }
 
     @Test
@@ -504,16 +513,6 @@ public class EndToEndTest {
     void searchWithForbiddenApiKeyShouldBeForbidden(@Autowired MockMvc mvc) throws Exception {
         fail("TODO");
     }
-
-    @Test
-    @Disabled
-    void searchWithCompanyNumberNotFoundShouldBeNotFound(@Autowired MockMvc mvc) throws Exception {
-        fail("TODO");
-    }
-
-
-    // TODO: Check Sanitise Query String
-    // Should be a POST, not a GET
 
     private static void verify(RequestPatternBuilder requestedFor) {
         wiremock.verify(requestedFor);
