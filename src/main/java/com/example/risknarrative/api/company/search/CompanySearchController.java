@@ -1,10 +1,7 @@
 package com.example.risknarrative.api.company.search;
 
 import com.example.risknarrative.services.company.CompanyService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
@@ -20,10 +17,11 @@ public class CompanySearchController {
     @PostMapping("/api/company/search")
     public CompanySearchResults search(
             @RequestHeader("x-api-key") String apiKey,
+            @RequestParam(name = "Active", required = false) boolean activeOnly,
             @RequestBody CompanySearch companySearch) {
         final var companyRecords = companySearchService.search(
                 apiKey,
-                isBlank(companySearch.companyNumber()) ? companySearch.companyName() : companySearch.companyNumber());
+                isBlank(companySearch.companyNumber()) ? companySearch.companyName() : companySearch.companyNumber(), activeOnly);
         return new CompanySearchResults(companyRecords.size(), companyRecords);
     }
 }

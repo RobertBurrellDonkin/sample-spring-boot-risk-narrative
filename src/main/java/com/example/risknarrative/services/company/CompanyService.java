@@ -21,11 +21,12 @@ public class CompanyService {
         this.webClientBuilder = webClientBuilder;
     }
 
-    public List<CompanyRecords> search(String apiKey, String searchTerm) {
+    public List<CompanyRecords> search(String apiKey, String searchTerm, boolean activeOnly) {
         //TODO
         return getCompanyResults(apiKey, searchTerm)
                 .items()
                 .stream()
+                .filter(activeOnly ? company -> "active".equals(company.companyStatus()) : __ -> true)
                 .map(company ->
                         aCompanyRecord()
                                 .withCompany(company)
@@ -71,4 +72,5 @@ public class CompanyService {
     public void setTruProxyBaseUrl(String truProxyBaseUrl) {
         this.truProxyBaseUrl = truProxyBaseUrl;
     }
+
 }

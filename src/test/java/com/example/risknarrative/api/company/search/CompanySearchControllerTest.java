@@ -30,7 +30,7 @@ class CompanySearchControllerTest {
     @Test
     void searchWithCompanyNumberAndCompanyName(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-number")).willReturn(
+        given(companySearchService.search("some-api-key", "some-company-number", false)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -173,7 +173,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-number");
+        verify(companySearchService).search("some-api-key", "some-company-number", false);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }
@@ -181,7 +181,7 @@ class CompanySearchControllerTest {
     @Test
     void searchWithCompanyNameOnly(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-name")).willReturn(
+        given(companySearchService.search("some-api-key", "some-company-name", false)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -323,7 +323,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-name");
+        verify(companySearchService).search("some-api-key", "some-company-name", false);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }
@@ -331,7 +331,7 @@ class CompanySearchControllerTest {
     @Test
     void searchWithCompanyNumberEmpty(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-name")).willReturn(
+        given(companySearchService.search("some-api-key", "some-company-name", false)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -474,8 +474,105 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-name");
+        verify(companySearchService).search("some-api-key", "some-company-name", false);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }
+
+
+    @Test
+    void searchActiveOnly(@Autowired MockMvc mvc) throws Exception {
+
+        given(companySearchService.search("some-api-key", "some-company-name", true)).willReturn(
+                List.of(
+                        aCompanyRecord()
+                                .withCompanyNumber("some-company-number")
+                                .withCompanyType("some-company-type")
+                                .withTitle("some-title")
+                                .withCompanyStatus("active")
+                                .withDateOfCreation("some-date-of-creation")
+                                .withAddress(
+                                        anAddress()
+                                                .withLocality("some-company-locality")
+                                                .withPostalCode("some-company-postal-code")
+                                                .withPremises("some-company-premises")
+                                                .withAddressLine("some-company-address-line1")
+                                                .withCountry("some-company-country")
+                                )
+                                .withOfficers(
+                                        anOfficer()
+                                                .withName("some-officer-name")
+                                                .withOfficerRole("some-officer-officerRole")
+                                                .withAppointedOn("some-officer-appointed-on")
+                                                .withAddress(
+                                                        anAddress()
+                                                                .withLocality("some-officer-locality")
+                                                                .withPostalCode("some-officer-postal-code")
+                                                                .withPremises("some-officer-premises")
+                                                                .withAddressLine("some-officer-address-line1")
+                                                                .withCountry("some-officer-country")
+                                                )
+                                ).build()
+                )
+        );
+
+        var expectedSearchResults = """
+                {
+                  "total_results": 1,
+                  "items": [
+                    {
+                      "company_number": "some-company-number",
+                      "company_type": "some-company-type",
+                      "title": "some-title",
+                      "company_status": "active",
+                      "date_of_creation": "some-date-of-creation",
+                      "address": {
+                        "locality": "some-company-locality",
+                        "postal_code": "some-company-postal-code",
+                        "premises": "some-company-premises",
+                        "address_line_1": "some-company-address-line1",
+                        "country": "some-company-country"
+                      },
+                      "officers": [
+                        {
+                          "name": "some-officer-name",
+                          "officer_role": "some-officer-officerRole",
+                          "appointed_on": "some-officer-appointed-on",
+                          "address": {
+                            "premises": "some-officer-premises",
+                            "locality": "some-officer-locality",
+                            "address_line_1": "some-officer-address-line1",
+                            "country": "some-officer-country",
+                            "postal_code": "some-officer-postal-code"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+                """;
+
+        var actualSearchResults = mvc.perform(
+                        post("/api/company/search")
+                                .header("x-api-key", "some-api-key")
+                                .queryParam("Active", "true")
+                                .contentType(APPLICATION_JSON)
+                                .content("""
+                                        {
+                                            "companyName" : "some-company-name"
+                                        }
+                                        """))
+                .andExpectAll(
+                        status().isOk(),
+                        content()
+                                .contentType(APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        verify(companySearchService).search("some-api-key", "some-company-name", true);
+
+        assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
+    }
+
 }
