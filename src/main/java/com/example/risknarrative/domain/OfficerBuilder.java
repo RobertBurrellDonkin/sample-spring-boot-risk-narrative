@@ -7,6 +7,7 @@ public class OfficerBuilder {
     private String officerRole;
     private String appointedOn;
     private AddressBuilder address;
+    private String resignedOn;
 
     public static OfficerBuilder anOfficer() {
         return new OfficerBuilder();
@@ -27,12 +28,22 @@ public class OfficerBuilder {
         return this;
     }
 
+    public OfficerBuilder withResignedOn(String resignedOn) {
+        this.resignedOn = resignedOn;
+        return this;
+    }
+
     public OfficerBuilder withAddress(AddressBuilder address) {
         this.address = address;
         return this;
     }
 
     public Officer build() {
-        return new Officer(name, officerRole, appointedOn, address.build());
+        return new Officer(
+                name,
+                officerRole,
+                appointedOn,
+                resignedOn,
+                address.build());
     }
 }

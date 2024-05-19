@@ -39,7 +39,7 @@ class OfficerResultsTest {
                                 },
                                 "name": "some-name",
                                 "appointed_on": "some-appointed-on",
-                                "resigned_on": "2018-02-12",
+                                "resigned_on": "some-resigned-on",
                                 "officer_role": "some-officer-role",
                                 "links": {
                                     "officer": {
@@ -63,6 +63,7 @@ class OfficerResultsTest {
                                     .withName("some-name")
                                     .withOfficerRole("some-officer-role")
                                     .withAppointedOn("some-appointed-on")
+                                    .withResignedOn("some-resigned-on")
                                     .withAddress(
                                             anAddress()
                                                     .withAddressLine("some-address-line")

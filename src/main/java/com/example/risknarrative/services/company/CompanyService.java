@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 
 import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Service
@@ -30,7 +31,12 @@ public class CompanyService {
                 .map(company ->
                         aCompanyRecord()
                                 .withCompany(company)
-                                .withOfficers(getOfficers(apiKey, company.companyNumber()).items()).build())
+                                .withOfficers(
+                                        getOfficers(apiKey, company.companyNumber()).items()
+                                                .stream()
+                                                .filter(officer -> isBlank(officer.resignedOn()))
+                                                .toList()
+                                ).build())
                 .toList();
     }
 

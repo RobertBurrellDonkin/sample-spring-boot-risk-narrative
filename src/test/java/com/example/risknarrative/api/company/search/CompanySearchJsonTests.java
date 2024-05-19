@@ -13,7 +13,7 @@ import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
-class CompanySearchOfficerResultsTest {
+class CompanySearchJsonTests {
 
     @Nested
     class CompanySearchTests {
@@ -33,7 +33,6 @@ class CompanySearchOfficerResultsTest {
                 assertThat(json.parseObject(content).companyName()).isEqualTo("some-company-name");
                 assertThat(json.parseObject(content).companyNumber()).isEqualTo("some-company-number");
             }
-
             //TODO: perm out
         }
     }
@@ -70,6 +69,7 @@ class CompanySearchOfficerResultsTest {
                                                                 .withName("some-officer-name")
                                                                 .withOfficerRole("some-officer-officerRole")
                                                                 .withAppointedOn("some-officer-appointed-on")
+                                                                .withResignedOn("some-officer-resigned-on")
                                                                 .withAddress(
                                                                         anAddress()
                                                                                 .withLocality("some-officer-locality")
@@ -119,7 +119,7 @@ class CompanySearchOfficerResultsTest {
                             ]
                         }
                         """;
-                assertThat(json.write(searchResults)).isEqualToJson(expectedJson);
+                assertThat(json.write(searchResults)).isStrictlyEqualToJson(expectedJson);
             }
 
             //TODO: perm out
