@@ -9,6 +9,7 @@ import java.util.Objects;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
 @Entity
+@Table(name = "OFFICERS")
 public class Officer {
     @Id
     @GeneratedValue
