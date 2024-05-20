@@ -35,10 +35,8 @@ class JsonTests {
                 assertThat(json.parseObject(content).companyName()).isEqualTo("some-company-name");
                 assertThat(json.parseObject(content).companyNumber()).isEqualTo("some-company-number");
             }
-            //TODO: perm out
         }
     }
-
 
     @Nested
     class CompanySearchResultsTests {
@@ -123,8 +121,6 @@ class JsonTests {
                         """;
                 assertThat(json.write(searchResults)).isStrictlyEqualToJson(expectedJson);
             }
-
-            //TODO: perm out
         }
     }
 

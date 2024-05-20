@@ -158,7 +158,7 @@ class CompanySearchControllerTest {
         var actualSearchResults = mvc.perform(
                         post("/api/company/search")
                                 .header("x-api-key", "some-api-key")
-                                .contentType(APPLICATION_JSON) //TODO: Other Content Types
+                                .contentType(APPLICATION_JSON)
                                 .content("""
                                         {
                                             "companyName" : "some-company-name",
