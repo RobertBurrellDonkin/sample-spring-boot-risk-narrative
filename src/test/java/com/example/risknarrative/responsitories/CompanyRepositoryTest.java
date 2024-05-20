@@ -37,6 +37,13 @@ public class CompanyRepositoryTest {
         officer.setName("some-officer-name");
         officer.setAppointedOn("some-appointed-on");
         officer.setOfficerRole("some-officer-role");
+        final var officerAddress = new Address();
+        officerAddress.setAddressLine("some-officer-address-line");
+        officerAddress.setCountry("some-officer-country");
+        officerAddress.setLocality("some-officer-locality");
+        officerAddress.setPostalCode("some-officer-postal-code");
+        officerAddress.setPremises("some-officer-premises");
+        officer.setAddress(officerAddress);
         testCompany.getOfficers().clear();
         testCompany.getOfficers().add(officer);
 
@@ -70,6 +77,13 @@ public class CompanyRepositoryTest {
         assertThat(officer.getName()).isEqualTo("some-officer-name");
         assertThat(officer.getAppointedOn()).isEqualTo("some-appointed-on");
         assertThat(officer.getOfficerRole()).isEqualTo("some-officer-role");
+
+        final var officerAddress = officer.getAddress();
+        assertThat(officerAddress.getAddressLine()).isEqualTo("some-officer-address-line");
+        assertThat(officerAddress.getCountry()).isEqualTo("some-officer-country");
+        assertThat(officerAddress.getLocality()).isEqualTo("some-officer-locality");
+        assertThat(officerAddress.getPostalCode()).isEqualTo("some-officer-postal-code");
+        assertThat(officerAddress.getPremises()).isEqualTo("some-officer-premises");
     }
 
     @Test
