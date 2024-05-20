@@ -1,19 +1,19 @@
-package com.example.risknarrative.controlllers;
+package com.example.risknarrative.builders;
 
-import com.example.risknarrative.domain.CompanyBuilder;
+import com.example.risknarrative.controlllers.CompanySearchResults;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultsTestBuilder {
+public class CompanySearchResultsBuilder {
 
-    public static SearchResultsTestBuilder searchResults() {
-        return new SearchResultsTestBuilder();
+    public static CompanySearchResultsBuilder searchResults() {
+        return new CompanySearchResultsBuilder();
     }
 
     private List<CompanyBuilder> itemBuilders = new ArrayList<>();
 
-    public SearchResultsTestBuilder withItems(CompanyBuilder... itemBuilders) {
+    public CompanySearchResultsBuilder withItems(CompanyBuilder... itemBuilders) {
         this.itemBuilders = List.of(itemBuilders);
         return this;
     }

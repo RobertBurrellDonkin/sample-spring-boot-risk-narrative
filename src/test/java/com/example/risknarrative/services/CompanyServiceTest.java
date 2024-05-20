@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 
-import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.domain.CompanyBuilder.aCompanyRecord;
-import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
+import static com.example.risknarrative.builders.AddressBuilder.anAddress;
+import static com.example.risknarrative.builders.CompanyBuilder.aCompanyRecord;
+import static com.example.risknarrative.builders.OfficerBuilder.anOfficer;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.cloud.contract.wiremock.WireMockSpring.options;

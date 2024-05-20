@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
-import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
+import static com.example.risknarrative.builders.AddressBuilder.anAddress;
+import static com.example.risknarrative.builders.OfficerBuilder.anOfficer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest

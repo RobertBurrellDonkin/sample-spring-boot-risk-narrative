@@ -1,4 +1,6 @@
-package com.example.risknarrative.domain;
+package com.example.risknarrative.builders;
+
+import com.example.risknarrative.domain.Officer;
 
 public class OfficerBuilder {
 
