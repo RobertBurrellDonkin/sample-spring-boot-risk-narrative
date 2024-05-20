@@ -62,13 +62,14 @@ public class CompanyBuilder {
     }
 
     public Company build() {
-        return new Company(
-                companyNumber,
-                companyType,
-                title,
-                companyStatus,
-                dateOfCreation,
-                address,
-                officers);
+        final Company company = new Company();
+        company.setCompanyNumber(companyNumber);
+        company.setCompanyType(companyType);
+        company.setCompanyStatus(companyStatus);
+        company.setTitle(title);
+        company.setDateOfCreation(dateOfCreation);
+        company.setAddress(address);
+        company.setOfficers(officers);
+        return company;
     }
 }

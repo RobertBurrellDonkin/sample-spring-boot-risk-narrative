@@ -40,11 +40,12 @@ public class AddressBuilder {
     }
 
     public Address build() {
-        return new Address(
-                locality,
-                postalCode,
-                premises,
-                addressLine1,
-                country);
+        final var address = new Address();
+        address.setLocality(locality);
+        address.setPostalCode(postalCode);
+        address.setPremises(premises);
+        address.setCountry(country);
+        address.setAddressLine(addressLine1);
+        return address;
     }
 }

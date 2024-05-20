@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
 @Entity
@@ -26,19 +28,6 @@ public class Officer {
     private Address address;
 
     public Officer() {}
-
-    public Officer(
-            String name,
-            String officerRole,
-            String appointedOn,
-            @JsonProperty(access = WRITE_ONLY) String resignedOn,
-            Address address) {
-        this.name = name;
-        this.officerRole = officerRole;
-        this.appointedOn = appointedOn;
-        this.resignedOn = resignedOn;
-        this.address = address;
-    }
 
     public String getName() {
         return name;
@@ -78,6 +67,19 @@ public class Officer {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Officer officer = (Officer) o;
+        return Objects.equals(id, officer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override

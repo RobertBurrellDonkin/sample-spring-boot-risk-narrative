@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
 public class Address {
     @Id
@@ -26,19 +28,6 @@ public class Address {
     private String country;
 
     public Address(){}
-
-    public Address(
-            String locality,
-            String postalCode,
-            String premises,
-            @JsonProperty("address_line_1") String addressLine,
-            String country) {
-        this.locality = locality;
-        this.postalCode = postalCode;
-        this.premises = premises;
-        this.addressLine = addressLine;
-        this.country = country;
-    }
 
     public Long getId() {
         return id;
@@ -87,6 +76,19 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(id, address.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override

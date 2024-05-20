@@ -41,11 +41,12 @@ public class OfficerBuilder {
     }
 
     public Officer build() {
-        return new Officer(
-                name,
-                officerRole,
-                appointedOn,
-                resignedOn,
-                address.build());
+        final Officer officer = new Officer();
+        officer.setName(name);
+        officer.setOfficerRole(officerRole);
+        officer.setAppointedOn(appointedOn);
+        officer.setResignedOn(resignedOn);
+        officer.setAddress(address.build());
+        return officer;
     }
 }

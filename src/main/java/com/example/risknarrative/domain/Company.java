@@ -32,24 +32,6 @@ public class Company {
         this.companyNumber = companyNumber;
     }
 
-    public Company(
-            String companyNumber,
-            String companyType,
-            String title,
-            String companyStatus,
-            String dateOfCreation,
-            Address address,
-            List<Officer> officers
-    ) {
-        this.companyNumber = companyNumber;
-        this.companyType = companyType;
-        this.title = title;
-        this.companyStatus = companyStatus;
-        this.dateOfCreation = dateOfCreation;
-        this.address = address;
-        this.officers = officers;
-    }
-
     public String getCompanyNumber() {
         return companyNumber;
     }
