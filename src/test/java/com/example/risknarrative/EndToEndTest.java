@@ -1,5 +1,6 @@
 package com.example.risknarrative;
 
+import com.example.risknarrative.responsitories.CompanyRepository;
 import com.example.risknarrative.services.TruProxyWebClient;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.MappingBuilder;
@@ -35,6 +36,8 @@ public class EndToEndTest {
 
     @Autowired
     TruProxyWebClient truProxyWebClient;
+    @Autowired
+    CompanyRepository companyRepository;
 
     @BeforeAll
     static void setupClass() {
@@ -44,6 +47,11 @@ public class EndToEndTest {
     @AfterAll
     static void clean() {
         wiremock.shutdown();
+    }
+
+    @AfterEach
+    void tearDown() {
+        companyRepository.deleteAll();
     }
 
     private static void verify(RequestPatternBuilder requestedFor) {
