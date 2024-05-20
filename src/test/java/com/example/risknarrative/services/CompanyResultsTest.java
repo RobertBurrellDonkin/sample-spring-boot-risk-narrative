@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.services.CompanyTestBuilder.aCompany;
+import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
@@ -60,7 +60,7 @@ public class CompanyResultsTest {
 
             assertThat(json.parseObject(content).items())
                     .containsExactly(
-                            aCompany()
+                            aCompanyRecord()
                                     .withCompanyStatus("some-company-status")
                                     .withCompanyNumber("some-company-number")
                                     .withDateOfCreation("some-date-of-creation")

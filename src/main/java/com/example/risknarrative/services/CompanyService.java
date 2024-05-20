@@ -7,7 +7,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -27,17 +26,17 @@ public class CompanyService {
         return getCompanyResults(apiKey, searchTerm)
                 .items()
                 .stream()
-                .filter(activeOnly ? company -> "active".equals(company.companyStatus()) : __ -> true)
-                .map(company ->
-                        aCompanyRecord()
-                                .withCompany(company)
-                                .withOfficers(
-                                        getOfficers(apiKey, company.companyNumber()).items()
-                                                .stream()
-                                                .filter(officer -> isBlank(officer.resignedOn()))
-                                                .toList()
-                                ).build())
+                .filter(activeOnly ? company -> "active".equals(company.getCompanyStatus()) : __ -> true)
+                .peek(company -> enrichWithOfficers(apiKey, company))
                 .toList();
+    }
+
+    private void enrichWithOfficers(String apiKey, CompanyRecords company) {
+        company.setOfficers(
+                getOfficers(apiKey, company.getCompanyNumber()).items()
+                        .stream()
+                        .filter(officer -> isBlank(officer.resignedOn()))
+                        .toList());
     }
 
     private CompanyResults getCompanyResults(String apiKey, String searchTerm) {
