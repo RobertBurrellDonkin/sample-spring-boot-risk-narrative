@@ -1,6 +1,6 @@
 package com.example.risknarrative.api.company.search;
 
-import com.example.risknarrative.services.company.CompanyService;
+import com.example.risknarrative.services.CompanyService;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;

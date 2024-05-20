@@ -1,4 +1,4 @@
-package com.example.risknarrative.services.company;
+package com.example.risknarrative.services;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.MappingBuilder;

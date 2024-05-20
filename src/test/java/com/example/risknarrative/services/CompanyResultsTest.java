@@ -1,4 +1,4 @@
-package com.example.risknarrative.services.company;
+package com.example.risknarrative.services;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.services.company.CompanyTestBuilder.aCompany;
+import static com.example.risknarrative.services.CompanyTestBuilder.aCompany;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest

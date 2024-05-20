@@ -1,6 +1,6 @@
 package com.example.risknarrative.api.company.search;
 
-import com.example.risknarrative.services.company.CompanyService;
+import com.example.risknarrative.services.CompanyService;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;

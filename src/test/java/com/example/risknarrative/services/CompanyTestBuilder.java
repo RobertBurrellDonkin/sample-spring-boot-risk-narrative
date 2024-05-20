@@ -1,4 +1,4 @@
-package com.example.risknarrative.services.company;
+package com.example.risknarrative.services;
 
 import com.example.risknarrative.domain.AddressBuilder;
 import com.example.risknarrative.domain.Company;

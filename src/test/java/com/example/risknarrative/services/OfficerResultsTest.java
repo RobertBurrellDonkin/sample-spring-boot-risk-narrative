@@ -1,4 +1,4 @@
-package com.example.risknarrative.services.company;
+package com.example.risknarrative.services;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
