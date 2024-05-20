@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -48,18 +50,20 @@ public class TruProxyWebClient {
     }
 
     public List<Officer> getOfficers(String apiKey, String number) {
-        return webClient()
-                .get()
-                .uri(uriBuilder -> uriBuilder
-                        .path("/Officers")
-                        .queryParam("CompanyNumber", number)
-                        .build())
-                .header("x-api-key", apiKey)
-                .retrieve()
-                .bodyToMono(OfficerResults.class)
-                .log()
-                .block()
-                .items();
+        return Optional.ofNullable(
+                        webClient()
+                                .get()
+                                .uri(uriBuilder -> uriBuilder
+                                        .path("/Officers")
+                                        .queryParam("CompanyNumber", number)
+                                        .build())
+                                .header("x-api-key", apiKey)
+                                .retrieve()
+                                .bodyToMono(OfficerResults.class)
+                                .log()
+                                .block()
+                                .items())
+                .orElseGet(ArrayList::new);
     }
 
     public record CompanyResults(List<Company> items) {
