@@ -1,16 +1,31 @@
 package com.example.risknarrative.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
+@Entity
 public class Officer {
+    @Id
+    @GeneratedValue
+    @JsonIgnore
+    private Long id;
+    @Column
     private String name;
+    @Column
     private String officerRole;
+    @Column
     private String appointedOn;
+    @Column
     @JsonProperty(access = WRITE_ONLY)
     private String resignedOn;
+    @JoinColumn()
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    public Officer() {}
 
     public Officer(
             String name,

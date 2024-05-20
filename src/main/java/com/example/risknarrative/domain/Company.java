@@ -1,16 +1,36 @@
 package com.example.risknarrative.domain;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Company {
+    @Id
     private String companyNumber;
+    @Column
     private String companyType;
+    @Column
     private String title;
+    @Column
     private String companyStatus;
+    @Column
     private String dateOfCreation;
+    @JoinColumn()
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
-    private List<Officer> officers;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn()
+    private List<Officer> officers = new ArrayList<>();
+
+    public Company() {
+    }
+
+    public Company(String companyNumber) {
+        this.companyNumber = companyNumber;
+    }
 
     public Company(
             String companyNumber,
