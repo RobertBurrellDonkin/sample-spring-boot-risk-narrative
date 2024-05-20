@@ -1,4 +1,4 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative.controlllers;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
-import static com.example.risknarrative.api.company.search.SearchResultsTestBuilder.searchResults;
+import static com.example.risknarrative.controlllers.SearchResultsTestBuilder.searchResults;
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
 import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
 import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;

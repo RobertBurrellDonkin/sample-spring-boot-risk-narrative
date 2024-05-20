@@ -1,4 +1,4 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative.controlllers;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.LowerCamelCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

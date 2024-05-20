@@ -1,4 +1,4 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative.controlllers;
 
 import com.example.risknarrative.domain.CompanyRecords;
 

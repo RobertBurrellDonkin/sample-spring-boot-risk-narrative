@@ -1,4 +1,4 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative.controlllers;
 
 import com.example.risknarrative.services.CompanyService;
 import org.springframework.web.bind.annotation.*;
