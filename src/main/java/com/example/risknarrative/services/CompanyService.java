@@ -1,6 +1,6 @@
 package com.example.risknarrative.services;
 
-import com.example.risknarrative.domain.CompanyRecords;
+import com.example.risknarrative.domain.Company;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,7 +21,7 @@ public class CompanyService {
         this.webClientBuilder = webClientBuilder;
     }
 
-    public List<CompanyRecords> search(String apiKey, String companyNumber, String companyName, boolean activeOnly) {
+    public List<Company> search(String apiKey, String companyNumber, String companyName, boolean activeOnly) {
         final var searchTerm = isBlank(companyNumber) ? companyName : companyNumber;
         return getCompanyResults(apiKey, searchTerm)
                 .items()
@@ -31,7 +31,7 @@ public class CompanyService {
                 .toList();
     }
 
-    private void enrichWithOfficers(String apiKey, CompanyRecords company) {
+    private void enrichWithOfficers(String apiKey, Company company) {
         company.setOfficers(
                 getOfficers(apiKey, company.getCompanyNumber()).items()
                         .stream()

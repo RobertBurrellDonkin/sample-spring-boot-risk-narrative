@@ -3,7 +3,7 @@ package com.example.risknarrative.domain;
 import java.util.List;
 import java.util.Objects;
 
-public class CompanyRecords {
+public class Company {
     private String companyNumber;
     private String companyType;
     private String title;
@@ -12,7 +12,7 @@ public class CompanyRecords {
     private Address address;
     private List<Officer> officers;
 
-    public CompanyRecords(
+    public Company(
             String companyNumber,
             String companyType,
             String title,
@@ -90,7 +90,7 @@ public class CompanyRecords {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CompanyRecords that = (CompanyRecords) o;
+        Company that = (Company) o;
         return Objects.equals(companyNumber, that.companyNumber);
     }
 

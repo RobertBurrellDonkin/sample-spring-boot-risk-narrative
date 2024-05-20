@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static com.example.risknarrative.domain.CompanyBuilder.aCompanyRecord;
 import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;

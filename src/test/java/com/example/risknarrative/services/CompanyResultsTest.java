@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static com.example.risknarrative.domain.CompanyBuilder.aCompanyRecord;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest

@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static com.example.risknarrative.domain.CompanyBuilder.aCompanyRecord;
 import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;

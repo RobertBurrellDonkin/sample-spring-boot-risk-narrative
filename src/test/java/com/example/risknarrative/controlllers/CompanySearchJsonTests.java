@@ -8,7 +8,7 @@ import org.springframework.boot.test.json.JacksonTester;
 
 import static com.example.risknarrative.controlllers.SearchResultsTestBuilder.searchResults;
 import static com.example.risknarrative.domain.AddressBuilder.anAddress;
-import static com.example.risknarrative.domain.CompanyRecordsBuilder.aCompanyRecord;
+import static com.example.risknarrative.domain.CompanyBuilder.aCompanyRecord;
 import static com.example.risknarrative.domain.OfficerBuilder.anOfficer;
 import static org.assertj.core.api.Assertions.assertThat;
 
