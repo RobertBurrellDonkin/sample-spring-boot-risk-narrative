@@ -33,6 +33,14 @@ public class CompanyRepositoryTest {
 
         testCompany.setAddress(address);
 
+        final var officer = buildOfficer();
+        testCompany.getOfficers().clear();
+        testCompany.getOfficers().add(officer);
+
+        companyRepository.save(testCompany);
+    }
+
+    private static Officer buildOfficer() {
         final var officer = new Officer();
         officer.setName("some-officer-name");
         officer.setAppointedOn("some-appointed-on");
@@ -44,10 +52,7 @@ public class CompanyRepositoryTest {
         officerAddress.setPostalCode("some-officer-postal-code");
         officerAddress.setPremises("some-officer-premises");
         officer.setAddress(officerAddress);
-        testCompany.getOfficers().clear();
-        testCompany.getOfficers().add(officer);
-
-        companyRepository.save(testCompany);
+        return officer;
     }
 
     @AfterEach
