@@ -1,7 +1,6 @@
 package com.example.risknarrative;
 
-import com.example.risknarrative.controlllers.CompanySearchRequest;
-import com.example.risknarrative.controlllers.CompanySearchResults;
+import com.example.risknarrative.controlllers.CompanySearchController;
 import com.example.risknarrative.services.TruProxyWebClient;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,7 @@ class JsonTests {
     @Nested
     class CompanySearchTests {
         @Autowired
-        private JacksonTester<CompanySearchRequest> json;
+        private JacksonTester<CompanySearchController.CompanySearchRequest> json;
 
         @Nested
         class DeserializationTests {
@@ -44,7 +43,7 @@ class JsonTests {
     @Nested
     class CompanySearchResultsTests {
         @Autowired
-        private JacksonTester<CompanySearchResults> json;
+        private JacksonTester<CompanySearchController.CompanySearchResults> json;
 
         @Nested
         class SerializationTests {

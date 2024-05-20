@@ -1,6 +1,6 @@
 package com.example.risknarrative.builders;
 
-import com.example.risknarrative.controlllers.CompanySearchResults;
+import com.example.risknarrative.controlllers.CompanySearchController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class CompanySearchResultsBuilder {
         return this;
     }
 
-    public CompanySearchResults build() {
-        return new CompanySearchResults(itemBuilders.size(), itemBuilders.stream().map(CompanyBuilder::build).toList());
+    public CompanySearchController.CompanySearchResults build() {
+        return new CompanySearchController.CompanySearchResults(itemBuilders.size(), itemBuilders.stream().map(CompanyBuilder::build).toList());
     }
 }
