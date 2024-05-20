@@ -62,4 +62,9 @@ public class TruProxyWebClient {
                 .items();
     }
 
+    public record CompanyResults(List<Company> items) {
+    }
+
+    public record OfficerResults(List<Officer> items) {
+    }
 }

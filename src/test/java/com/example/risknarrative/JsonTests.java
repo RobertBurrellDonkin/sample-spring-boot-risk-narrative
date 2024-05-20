@@ -2,6 +2,7 @@ package com.example.risknarrative;
 
 import com.example.risknarrative.controlllers.CompanySearchRequest;
 import com.example.risknarrative.controlllers.CompanySearchResults;
+import com.example.risknarrative.services.TruProxyWebClient;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,7 +132,7 @@ class JsonTests {
     @Nested
     class OfficerResults {
         @Autowired
-        private JacksonTester<com.example.risknarrative.services.OfficerResults> json;
+        private JacksonTester<TruProxyWebClient.OfficerResults> json;
 
         @Nested
         class Deserialization {
@@ -200,7 +201,7 @@ class JsonTests {
     class CompanyResults {
 
         @Autowired
-        private JacksonTester<com.example.risknarrative.services.CompanyResults> json;
+        private JacksonTester<TruProxyWebClient.CompanyResults> json;
 
         @Nested
         class Deserialization {
