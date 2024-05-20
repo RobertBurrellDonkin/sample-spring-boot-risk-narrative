@@ -18,7 +18,7 @@ public class CompanyBuilder {
     private Address address;
     private List<Officer> officers = new ArrayList<>();
 
-    public static CompanyBuilder aCompanyRecord() {
+    public static CompanyBuilder aCompany() {
         return new CompanyBuilder();
     }
 

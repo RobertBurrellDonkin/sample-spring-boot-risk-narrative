@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
-import static com.example.risknarrative.builders.AddressBuilder.anAddress;
-import static com.example.risknarrative.builders.OfficerBuilder.anOfficer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
@@ -57,23 +55,24 @@ class OfficerResultsTest {
                       }
                     """;
 
-            assertThat(json.parseObject(content).items())
-                    .containsExactly(
-                            anOfficer()
-                                    .withName("some-name")
-                                    .withOfficerRole("some-officer-role")
-                                    .withAppointedOn("some-appointed-on")
-                                    .withResignedOn("some-resigned-on")
-                                    .withAddress(
-                                            anAddress()
-                                                    .withAddressLine("some-address-line")
-                                                    .withPremises("some-premises")
-                                                    .withCountry("some-country")
-                                                    .withLocality("some-locality")
-                                                    .withPostalCode("some-postal-code")
-                                    )
-                                    .build()
-                    );
+            final var items = json.parseObject(content).items();
+            assertThat(items).hasSize(1);
+
+            final var officer = items.get(0);
+            assertThat(officer).isNotNull();
+            assertThat(officer.getName()).isEqualTo("some-name");
+            assertThat(officer.getAppointedOn()).isEqualTo("some-appointed-on");
+            assertThat(officer.getResignedOn()).isEqualTo("some-resigned-on");
+            assertThat(officer.getOfficerRole()).isEqualTo("some-officer-role");
+
+            final var address = officer.getAddress();
+            assertThat(address).isNotNull();
+            assertThat(address.getPostalCode()).isEqualTo("some-postal-code");
+            assertThat(address.getCountry()).isEqualTo("some-country");
+            assertThat(address.getLocality()).isEqualTo("some-locality");
+            assertThat(address.getPremises()).isEqualTo("some-premises");
+            assertThat(address.getAddressLine()).isEqualTo("some-address-line");
+
         }
     }
 

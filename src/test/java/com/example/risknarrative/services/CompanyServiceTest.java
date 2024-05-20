@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 
 import static com.example.risknarrative.builders.AddressBuilder.anAddress;
-import static com.example.risknarrative.builders.CompanyBuilder.aCompanyRecord;
+import static com.example.risknarrative.builders.CompanyBuilder.aCompany;
 import static com.example.risknarrative.builders.OfficerBuilder.anOfficer;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -154,7 +154,7 @@ class CompanyServiceTest {
                     .withHeader(X_API_KEY, equalTo("some-api-key")));
 
             assertThat(companyRecords).containsExactly(
-                    aCompanyRecord()
+                    aCompany()
                             .withCompanyNumber("some-company-number")
                             .withCompanyType("some-company-type")
                             .withCompanyStatus("some-company-status")
@@ -286,7 +286,7 @@ class CompanyServiceTest {
                     .withHeader(X_API_KEY, equalTo("some-api-key")));
 
             assertThat(companyRecords).containsExactly(
-                    aCompanyRecord()
+                    aCompany()
                             .withCompanyNumber("some-company-number")
                             .withCompanyType("some-company-type")
                             .withCompanyStatus("some-company-status")
@@ -447,7 +447,7 @@ class CompanyServiceTest {
                     .withHeader(X_API_KEY, equalTo("some-api-key")));
 
             assertThat(companyRecords).containsExactly(
-                    aCompanyRecord()
+                    aCompany()
                             .withCompanyNumber("some-company-number")
                             .withCompanyType("some-company-type")
                             .withCompanyStatus("active")
@@ -606,7 +606,7 @@ class CompanyServiceTest {
                 .withHeader(X_API_KEY, equalTo("some-api-key")));
 
         assertThat(companyRecords).containsExactly(
-                aCompanyRecord()
+                aCompany()
                         .withCompanyNumber("some-company-number")
                         .withCompanyType("some-company-type")
                         .withCompanyStatus("some-company-status")

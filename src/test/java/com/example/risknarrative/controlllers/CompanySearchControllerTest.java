@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static com.example.risknarrative.builders.AddressBuilder.anAddress;
-import static com.example.risknarrative.builders.CompanyBuilder.aCompanyRecord;
+import static com.example.risknarrative.builders.CompanyBuilder.aCompany;
 import static com.example.risknarrative.builders.OfficerBuilder.anOfficer;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -32,7 +32,7 @@ class CompanySearchControllerTest {
 
         given(companySearchService.search("some-api-key", "some-company-number", "some-company-name", false)).willReturn(
                 List.of(
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("some-company-number")
                                 .withCompanyType("some-company-type")
                                 .withTitle("some-title")
@@ -60,7 +60,7 @@ class CompanySearchControllerTest {
                                                                 .withCountry("some-officer-country")
                                                 )
                                 ).build(),
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("another-company-number")
                                 .withCompanyType("another-company-type")
                                 .withTitle("another-title")
@@ -183,7 +183,7 @@ class CompanySearchControllerTest {
 
         given(companySearchService.search("some-api-key", null, "some-company-name", false)).willReturn(
                 List.of(
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("some-company-number")
                                 .withCompanyType("some-company-type")
                                 .withTitle("some-title")
@@ -211,7 +211,7 @@ class CompanySearchControllerTest {
                                                                 .withCountry("some-officer-country")
                                                 )
                                 ).build(),
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("another-company-number")
                                 .withCompanyType("another-company-type")
                                 .withTitle("another-title")
@@ -333,7 +333,7 @@ class CompanySearchControllerTest {
 
         given(companySearchService.search("some-api-key", "", "some-company-name", false)).willReturn(
                 List.of(
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("some-company-number")
                                 .withCompanyType("some-company-type")
                                 .withTitle("some-title")
@@ -361,7 +361,7 @@ class CompanySearchControllerTest {
                                                                 .withCountry("some-officer-country")
                                                 )
                                 ).build(),
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("another-company-number")
                                 .withCompanyType("another-company-type")
                                 .withTitle("another-title")
@@ -485,7 +485,7 @@ class CompanySearchControllerTest {
 
         given(companySearchService.search("some-api-key", null, "some-company-name", true)).willReturn(
                 List.of(
-                        aCompanyRecord()
+                        aCompany()
                                 .withCompanyNumber("some-company-number")
                                 .withCompanyType("some-company-type")
                                 .withTitle("some-title")

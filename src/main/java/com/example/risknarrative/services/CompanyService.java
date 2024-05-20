@@ -35,7 +35,7 @@ public class CompanyService {
         company.setOfficers(
                 getOfficers(apiKey, company.getCompanyNumber()).items()
                         .stream()
-                        .filter(officer -> isBlank(officer.resignedOn()))
+                        .filter(officer -> isBlank(officer.getResignedOn()))
                         .toList());
     }
 

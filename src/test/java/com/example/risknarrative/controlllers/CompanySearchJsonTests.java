@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
 import static com.example.risknarrative.builders.AddressBuilder.anAddress;
-import static com.example.risknarrative.builders.CompanyBuilder.aCompanyRecord;
+import static com.example.risknarrative.builders.CompanyBuilder.aCompany;
 import static com.example.risknarrative.builders.CompanySearchResultsBuilder.searchResults;
 import static com.example.risknarrative.builders.OfficerBuilder.anOfficer;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +50,7 @@ class CompanySearchJsonTests {
                 var searchResults =
                         searchResults()
                                 .withItems(
-                                        aCompanyRecord()
+                                        aCompany()
                                                 .withCompanyNumber("some-company-number")
                                                 .withCompanyType("some-company-type")
                                                 .withTitle("some-title")
