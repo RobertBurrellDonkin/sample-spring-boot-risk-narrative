@@ -22,8 +22,8 @@ public class CompanyService {
         this.webClientBuilder = webClientBuilder;
     }
 
-    public List<CompanyRecords> search(String apiKey, String searchTerm, boolean activeOnly) {
-        //TODO
+    public List<CompanyRecords> search(String apiKey, String companyNumber, String companyName, boolean activeOnly) {
+        final var searchTerm = isBlank(companyNumber) ? companyName : companyNumber;
         return getCompanyResults(apiKey, searchTerm)
                 .items()
                 .stream()

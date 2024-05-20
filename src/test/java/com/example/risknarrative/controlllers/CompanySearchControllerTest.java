@@ -30,7 +30,7 @@ class CompanySearchControllerTest {
     @Test
     void searchWithCompanyNumberAndCompanyName(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-number", false)).willReturn(
+        given(companySearchService.search("some-api-key", "some-company-number", "some-company-name", false)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -173,7 +173,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-number", false);
+        verify(companySearchService).search("some-api-key", "some-company-number", "some-company-name", false);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }
@@ -181,7 +181,7 @@ class CompanySearchControllerTest {
     @Test
     void searchWithCompanyNameOnly(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-name", false)).willReturn(
+        given(companySearchService.search("some-api-key", null, "some-company-name", false)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -323,7 +323,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-name", false);
+        verify(companySearchService).search("some-api-key", null, "some-company-name", false);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }
@@ -331,7 +331,7 @@ class CompanySearchControllerTest {
     @Test
     void searchWithCompanyNumberEmpty(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-name", false)).willReturn(
+        given(companySearchService.search("some-api-key", "", "some-company-name", false)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -474,7 +474,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-name", false);
+        verify(companySearchService).search("some-api-key", "", "some-company-name", false);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }
@@ -483,7 +483,7 @@ class CompanySearchControllerTest {
     @Test
     void searchActiveOnly(@Autowired MockMvc mvc) throws Exception {
 
-        given(companySearchService.search("some-api-key", "some-company-name", true)).willReturn(
+        given(companySearchService.search("some-api-key", null, "some-company-name", true)).willReturn(
                 List.of(
                         aCompanyRecord()
                                 .withCompanyNumber("some-company-number")
@@ -570,7 +570,7 @@ class CompanySearchControllerTest {
                 .getResponse()
                 .getContentAsString();
 
-        verify(companySearchService).search("some-api-key", "some-company-name", true);
+        verify(companySearchService).search("some-api-key", null, "some-company-name", true);
 
         assertEquals(expectedSearchResults, actualSearchResults, JSONCompareMode.STRICT);
     }

@@ -142,7 +142,7 @@ class CompanyServiceTest {
                                                     """
                                     )));
 
-            var companyRecords = subjectUnderTest.search("some-api-key", "some-company-number", false);
+            var companyRecords = subjectUnderTest.search("some-api-key", "some-company-number", null, false);
 
             verify(getRequestedFor(urlPathEqualTo(TRU_PROXY_SEARCH_PATH))
                     .withQueryParam("Query", equalTo("some-company-number"))
@@ -274,7 +274,7 @@ class CompanyServiceTest {
                                                     """
                                     )));
 
-            var companyRecords = subjectUnderTest.search("some-api-key", "some-company-name", false);
+            var companyRecords = subjectUnderTest.search("some-api-key", null, "some-company-name", false);
 
             verify(getRequestedFor(urlPathEqualTo(TRU_PROXY_SEARCH_PATH))
                     .withQueryParam("Query", equalTo("some-company-name"))
@@ -435,7 +435,7 @@ class CompanyServiceTest {
                                                     """
                                     )));
 
-            var companyRecords = subjectUnderTest.search("some-api-key", "some-company-name", true);
+            var companyRecords = subjectUnderTest.search("some-api-key", null, "some-company-name", true);
 
             verify(getRequestedFor(urlPathEqualTo(TRU_PROXY_SEARCH_PATH))
                     .withQueryParam("Query", equalTo("some-company-name"))
@@ -594,7 +594,7 @@ class CompanyServiceTest {
                                                 """
                                 )));
 
-        var companyRecords = subjectUnderTest.search("some-api-key", "some-company-name", false);
+        var companyRecords = subjectUnderTest.search("some-api-key", null, "some-company-name", false);
 
         verify(getRequestedFor(urlPathEqualTo(TRU_PROXY_SEARCH_PATH))
                 .withQueryParam("Query", equalTo("some-company-name"))
