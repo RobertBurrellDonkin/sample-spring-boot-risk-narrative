@@ -18,7 +18,7 @@ class CompanySearchJsonTests {
     @Nested
     class CompanySearchTests {
         @Autowired
-        private JacksonTester<CompanySearch> json;
+        private JacksonTester<CompanySearchRequest> json;
 
         @Nested
         class DeserializationTests {

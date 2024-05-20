@@ -4,5 +4,5 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies.LowerCamelCaseStr
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(LowerCamelCaseStrategy.class)
-public record CompanySearch(String companyNumber, String companyName) {
+public record CompanySearchRequest(String companyNumber, String companyName) {
 }
