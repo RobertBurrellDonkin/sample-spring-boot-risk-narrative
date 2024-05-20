@@ -4,7 +4,6 @@ import com.example.risknarrative.domain.Officer;
 
 public class OfficerBuilder {
 
-
     private String name;
     private String officerRole;
     private String appointedOn;
