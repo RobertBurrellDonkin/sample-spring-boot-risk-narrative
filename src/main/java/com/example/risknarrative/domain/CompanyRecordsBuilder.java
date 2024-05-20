@@ -23,21 +23,6 @@ public class CompanyRecordsBuilder {
         return this;
     }
 
-    public CompanyRecordsBuilder withOfficers(List<Officer> officers) {
-        this.officers = officers;
-        return this;
-    }
-
-    public CompanyRecordsBuilder withCompany(Company company) {
-        return this
-                .withCompanyStatus(company.companyStatus())
-                .withCompanyNumber(company.companyNumber())
-                .withCompanyType(company.companyType())
-                .withTitle(company.title())
-                .withDateOfCreation(company.dateOfCreation())
-                .withAddress(company.address());
-    }
-
     public CompanyRecordsBuilder withAddress(Address address) {
         this.address = address;
         return this;
