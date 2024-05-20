@@ -1,4 +1,4 @@
-package com.example.risknarrative.api.company.search;
+package com.example.risknarrative;
 
 import com.example.risknarrative.services.CompanyService;
 import com.github.tomakehurst.wiremock.WireMockServer;
@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureWireMock(port = 0)
 @AutoConfigureMockMvc
 public class EndToEndTest {
-
 
     public static final String TRU_PROXY_API = "/TruProxyAPI/rest/Companies/v1/";
     public static final String TRU_PROXY_SEARCH_PATH = TRU_PROXY_API + "Search";
