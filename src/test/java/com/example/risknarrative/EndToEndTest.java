@@ -1,6 +1,6 @@
 package com.example.risknarrative;
 
-import com.example.risknarrative.services.CompanyService;
+import com.example.risknarrative.services.TruProxyWebClient;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
@@ -35,7 +35,7 @@ public class EndToEndTest {
     public static WireMockServer wiremock = new WireMockServer(options().dynamicPort());
 
     @Autowired
-    CompanyService companyService;
+    TruProxyWebClient truProxyWebClient;
 
     @BeforeAll
     static void setupClass() {
@@ -55,7 +55,7 @@ public class EndToEndTest {
 
     @BeforeEach
     void setUpMocks() {
-        companyService.setTruProxyBaseUrl(wiremock.baseUrl());
+        truProxyWebClient.setBaseUrl(wiremock.baseUrl());
     }
 
 

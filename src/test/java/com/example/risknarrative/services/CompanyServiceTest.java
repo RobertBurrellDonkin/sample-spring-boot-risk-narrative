@@ -27,6 +27,9 @@ class CompanyServiceTest {
     @Autowired
     CompanyService subjectUnderTest;
 
+    @Autowired
+    TruProxyWebClient truProxyWebClient;
+
     public static WireMockServer wiremock = new WireMockServer(options().dynamicPort());
 
     @BeforeAll
@@ -46,7 +49,7 @@ class CompanyServiceTest {
 
     @BeforeEach
     void setUpBaseUrl() {
-        subjectUnderTest.setTruProxyBaseUrl(wiremock.baseUrl());
+        truProxyWebClient.setBaseUrl(wiremock.baseUrl());
     }
 
     @Nested
