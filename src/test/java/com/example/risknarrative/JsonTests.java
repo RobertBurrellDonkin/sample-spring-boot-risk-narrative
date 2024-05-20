@@ -138,41 +138,41 @@ class JsonTests {
             @Test
             void allFields() throws Exception {
                 var content = """
-                    {
-                        "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
-                        "links": {
-                            "self": "/company/10241297/officers"
-                        },
-                        "kind": "officer-list",
-                        "items_per_page": 35,
-                        "items": [
-                            {
-                                "address": {
-                                    "premises": "some-premises",
-                                    "postal_code": "some-postal-code",
-                                    "country": "some-country",
-                                    "locality": "some-locality",
-                                    "address_line_1": "some-address-line"
-                                },
-                                "name": "some-name",
-                                "appointed_on": "some-appointed-on",
-                                "resigned_on": "some-resigned-on",
-                                "officer_role": "some-officer-role",
-                                "links": {
-                                    "officer": {
-                                        "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
-                                    }
-                                },
-                                "date_of_birth": {
-                                    "month": 6,
-                                    "year": 1969
-                                },
-                                "occupation": "Finance And Accounting",
-                                "country_of_residence": "United States",
-                                "nationality": "American"
-                            }]
-                      }
-                    """;
+                        {
+                            "etag": "6dd2261e61776d79c2c50685145fac364e75e24e",
+                            "links": {
+                                "self": "/company/10241297/officers"
+                            },
+                            "kind": "officer-list",
+                            "items_per_page": 35,
+                            "items": [
+                                {
+                                    "address": {
+                                        "premises": "some-premises",
+                                        "postal_code": "some-postal-code",
+                                        "country": "some-country",
+                                        "locality": "some-locality",
+                                        "address_line_1": "some-address-line"
+                                    },
+                                    "name": "some-name",
+                                    "appointed_on": "some-appointed-on",
+                                    "resigned_on": "some-resigned-on",
+                                    "officer_role": "some-officer-role",
+                                    "links": {
+                                        "officer": {
+                                            "appointments": "/officers/4R8_9bZ44w0_cRlrxoC-wRwaMiE/appointments"
+                                        }
+                                    },
+                                    "date_of_birth": {
+                                        "month": 6,
+                                        "year": 1969
+                                    },
+                                    "occupation": "Finance And Accounting",
+                                    "country_of_residence": "United States",
+                                    "nationality": "American"
+                                }]
+                          }
+                        """;
 
                 final var items = json.parseObject(content).items();
                 assertThat(items).hasSize(1);
@@ -207,42 +207,42 @@ class JsonTests {
             @Test
             void allFields() throws Exception {
                 var content = """
-                    {
-                       "page_number": 1,
-                       "kind": "search#companies",
-                       "total_results": 20,
-                       "items": [
-                           {
-                               "company_status": "some-company-status",
-                               "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
-                               "date_of_creation": "some-date-of-creation",
-                               "matches": {
-                                   "title": [
-                                       1,
-                                       3
+                        {
+                           "page_number": 1,
+                           "kind": "search#companies",
+                           "total_results": 20,
+                           "items": [
+                               {
+                                   "company_status": "some-company-status",
+                                   "address_snippet": "Boswell Cottage Main Street, North Leverton, Retford, England, DN22 0AD",
+                                   "date_of_creation": "some-date-of-creation",
+                                   "matches": {
+                                       "title": [
+                                           1,
+                                           3
+                                       ]
+                                   },
+                                   "description": "06500244 - Incorporated on 11 February 2008",
+                                   "links": {
+                                       "self": "/company/06500244"
+                                   },
+                                   "company_number": "some-company-number",
+                                   "title": "some-company-title",
+                                   "company_type": "some-company-type",
+                                   "address": {
+                                       "premises": "some-premises",
+                                       "postal_code": "some-postal-code",
+                                       "country": "some-country",
+                                       "locality": "some-locality",
+                                       "address_line_1": "some-address-line"
+                                   },
+                                   "kind": "searchresults#company",
+                                   "description_identifier": [
+                                       "incorporated-on"
                                    ]
-                               },
-                               "description": "06500244 - Incorporated on 11 February 2008",
-                               "links": {
-                                   "self": "/company/06500244"
-                               },
-                               "company_number": "some-company-number",
-                               "title": "some-company-title",
-                               "company_type": "some-company-type",
-                               "address": {
-                                   "premises": "some-premises",
-                                   "postal_code": "some-postal-code",
-                                   "country": "some-country",
-                                   "locality": "some-locality",
-                                   "address_line_1": "some-address-line"
-                               },
-                               "kind": "searchresults#company",
-                               "description_identifier": [
-                                   "incorporated-on"
-                               ]
-                           }]
-                     }
-                    """;
+                               }]
+                         }
+                        """;
 
                 assertThat(json.parseObject(content).items())
                         .containsExactly(

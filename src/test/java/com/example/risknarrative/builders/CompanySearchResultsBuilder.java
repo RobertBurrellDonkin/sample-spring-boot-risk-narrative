@@ -7,11 +7,11 @@ import java.util.List;
 
 public class CompanySearchResultsBuilder {
 
+    private List<CompanyBuilder> itemBuilders = new ArrayList<>();
+
     public static CompanySearchResultsBuilder searchResults() {
         return new CompanySearchResultsBuilder();
     }
-
-    private List<CompanyBuilder> itemBuilders = new ArrayList<>();
 
     public CompanySearchResultsBuilder withItems(CompanyBuilder... itemBuilders) {
         this.itemBuilders = List.of(itemBuilders);

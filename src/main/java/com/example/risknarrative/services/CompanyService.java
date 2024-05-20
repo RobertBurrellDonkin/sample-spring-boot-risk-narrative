@@ -17,6 +17,10 @@ public class CompanyService {
 
     public List<Company> search(String apiKey, String companyNumber, String companyName, boolean activeOnly) {
         final var searchTerm = isBlank(companyNumber) ? companyName : companyNumber;
+        return searchForCompanies(apiKey, activeOnly, searchTerm);
+    }
+
+    private List<Company> searchForCompanies(String apiKey, boolean activeOnly, String searchTerm) {
         return truProxyWebClient.getCompanies(apiKey, searchTerm)
                 .stream()
                 .filter(activeOnly ? company -> "active".equals(company.getCompanyStatus()) : __ -> true)
@@ -31,6 +35,4 @@ public class CompanyService {
                         .filter(officer -> isBlank(officer.getResignedOn()))
                         .toList());
     }
-
-
 }

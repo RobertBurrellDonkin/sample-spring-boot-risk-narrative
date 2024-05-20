@@ -1,13 +1,15 @@
 ## Goal
+
 Create a company search application using Spring Boot 3.1.3 or higher.
 
-Expose an endpoint that uses the `TruProxyAPI` to do a company and officer lookup 
+Expose an endpoint that uses the `TruProxyAPI` to do a company and officer lookup
 via name or registration number.
 
 ## Criteria
+
 * The result of the search is returned as JSON
 * A request parameter has to be added to decide whether only active companies should be returned
-* The officers of each company have to be included in the company details (new field `officers`) 
+* The officers of each company have to be included in the company details (new field `officers`)
 * Only include officers that are active (`resigned_on` is not present in that case)
 * Paging can be ignored
 * Please add unit tests and integrations tests, e.g. using WireMock to mock `TruProxyAPI` calls
@@ -28,7 +30,7 @@ via name or registration number.
 **Expected Response**
 
 * Not all fields that are returned from `TruProxyAPI` are required.
-The final JSON should look like this :
+  The final JSON should look like this :
 
 <pre>
 
@@ -68,10 +70,10 @@ The final JSON should look like this :
 </pre>
 
 ## Bonus
-* Save the companies (by `company_number`) and its officers and addresses in a database 
-and return the result from there if the endpoint is called with `companyNumber`.
 
- 
+* Save the companies (by `company_number`) and its officers and addresses in a database
+  and return the result from there if the endpoint is called with `companyNumber`.
+
 ## Example API Requests
 
 **Search for Company:**  
@@ -166,7 +168,8 @@ and return the result from there if the endpoint is called with `companyNumber`.
 
 **Authentication:**\
 Use the API key provided in your request header when calling the endpoints. <br>
-Example: curl -s -H 'x-api-key: xxxxxxxxxxxxx' "https://exercise.trunarrative.cloud/TruProxyAPI/rest/Companies/v1/Officers?CompanyNumber=10241297"<br>
+Example: curl -s -H 'x-api-key:
+xxxxxxxxxxxxx' "https://exercise.trunarrative.cloud/TruProxyAPI/rest/Companies/v1/Officers?CompanyNumber=10241297"<br>
 
 *API credentials will be provided seperately*
 

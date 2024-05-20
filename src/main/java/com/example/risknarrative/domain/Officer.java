@@ -6,11 +6,11 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
 public class Officer {
     private String name;
-    private  String officerRole;
-    private  String appointedOn;
+    private String officerRole;
+    private String appointedOn;
     @JsonProperty(access = WRITE_ONLY)
-    private  String resignedOn;
-    private  Address address;
+    private String resignedOn;
+    private Address address;
 
     public Officer(
             String name,

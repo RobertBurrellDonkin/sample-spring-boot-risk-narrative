@@ -12,7 +12,6 @@ import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.assertj.core.api.Fail.fail;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 import static org.skyscreamer.jsonassert.JSONCompareMode.STRICT;
 import static org.springframework.cloud.contract.wiremock.WireMockSpring.options;
@@ -42,22 +41,55 @@ public class EndToEndTest {
         wiremock.start();
     }
 
-    @AfterEach
-    void after() {
-        wiremock.resetAll();
-    }
-
     @AfterAll
     static void clean() {
         wiremock.shutdown();
     }
 
+    private static void verify(RequestPatternBuilder requestedFor) {
+        wiremock.verify(requestedFor);
+    }
+
+    private static String searchAll(MockMvc mvc, String apiKey, String query) throws Exception {
+        return mvc.perform(
+                        post(COMPANY_SEARCH_URL)
+                                .contentType(APPLICATION_JSON)
+                                .header(X_API_KEY, apiKey)
+                                .content(query))
+                .andExpectAll(
+                        status().isOk(),
+                        content()
+                                .contentType(APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+    }
+
+    private static String searchActiveOnly(MockMvc mvc, String apiKey, String query) throws Exception {
+        return mvc.perform(
+                        post(COMPANY_SEARCH_URL)
+                                .contentType(APPLICATION_JSON)
+                                .queryParam("Active", "true")
+                                .header(X_API_KEY, apiKey)
+                                .content(query))
+                .andExpectAll(
+                        status().isOk(),
+                        content()
+                                .contentType(APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+    }
+
+    @AfterEach
+    void after() {
+        wiremock.resetAll();
+    }
 
     @BeforeEach
     void setUpMocks() {
         truProxyWebClient.setBaseUrl(wiremock.baseUrl());
     }
-
 
     @Test
     void searchWithCompanyNumberAndCompanyName(@Autowired MockMvc mvc) throws Exception {
@@ -655,33 +687,6 @@ public class EndToEndTest {
     }
 
     @Test
-    @Disabled
-    void searchWithoutBodyShouldBeABadRequest(@Autowired MockMvc mvc) throws Exception {
-        mvc.perform(post(COMPANY_SEARCH_URL)
-                        .contentType(APPLICATION_JSON)
-                        .header(X_API_KEY, "some-api-key"))
-                .andExpect(
-                        status().isBadRequest());
-
-    }
-
-    @Test
-    @Disabled
-    void searchWithoutAnApiKeyShouldBeABadRequest(@Autowired MockMvc mvc) throws Exception {
-        mvc.perform(post(COMPANY_SEARCH_URL)
-                        .contentType(APPLICATION_JSON)
-                        .header(X_API_KEY, "some-api-key"))
-                .andExpect(
-                        status().isBadRequest());
-    }
-
-    @Test
-    @Disabled
-    void searchWithForbiddenApiKeyShouldBeForbidden(@Autowired MockMvc mvc) throws Exception {
-        fail("TODO");
-    }
-
-    @Test
     void searchShouldReturnActiveOfficersOnly(@Autowired MockMvc mvc) throws Exception {
         var query = """
                 {
@@ -849,10 +854,6 @@ public class EndToEndTest {
 
     }
 
-    private static void verify(RequestPatternBuilder requestedFor) {
-        wiremock.verify(requestedFor);
-    }
-
     private void stubFor(MappingBuilder mappingBuilder) {
         wiremock.stubFor(mappingBuilder);
     }
@@ -875,37 +876,6 @@ public class EndToEndTest {
                         aResponse()
                                 .withHeader("Content-Type", "application/json")
                                 .withBody(companyResults)));
-    }
-
-    private static String searchAll(MockMvc mvc, String apiKey, String query) throws Exception {
-        return mvc.perform(
-                        post(COMPANY_SEARCH_URL)
-                                .contentType(APPLICATION_JSON)
-                                .header(X_API_KEY, apiKey)
-                                .content(query))
-                .andExpectAll(
-                        status().isOk(),
-                        content()
-                                .contentType(APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-    }
-
-    private static String searchActiveOnly(MockMvc mvc, String apiKey, String query) throws Exception {
-        return mvc.perform(
-                        post(COMPANY_SEARCH_URL)
-                                .contentType(APPLICATION_JSON)
-                                .queryParam("Active", "true")
-                                .header(X_API_KEY, apiKey)
-                                .content(query))
-                .andExpectAll(
-                        status().isOk(),
-                        content()
-                                .contentType(APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
     }
 }
 

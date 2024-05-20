@@ -1,10 +1,10 @@
 spring:
-    application:
-        name: RiskNarrative
+  application:
+    name: RiskNarrative
 
-    jackson:
-        property-naming-strategy: SNAKE_CASE
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
 truproxy:
-    base:
-        url: https://exercise.trunarrative.cloud/
+  base:
+    url: https://exercise.trunarrative.cloud/
