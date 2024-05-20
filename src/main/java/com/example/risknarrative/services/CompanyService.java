@@ -16,8 +16,11 @@ public class CompanyService {
     }
 
     public List<Company> search(String apiKey, String companyNumber, String companyName, boolean activeOnly) {
-        final var searchTerm = isBlank(companyNumber) ? companyName : companyNumber;
-        return searchForCompanies(apiKey, activeOnly, searchTerm);
+        if (isBlank(companyNumber)) {
+            return searchForCompanies(apiKey, activeOnly, companyName);
+        } else {
+            return searchForCompanies(apiKey, activeOnly, companyNumber);
+        }
     }
 
     private List<Company> searchForCompanies(String apiKey, boolean activeOnly, String searchTerm) {
