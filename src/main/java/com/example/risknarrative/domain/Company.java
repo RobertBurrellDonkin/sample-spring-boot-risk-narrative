@@ -22,7 +22,7 @@ public class Company {
     @JoinColumn()
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn()
     private List<Officer> officers = new ArrayList<>();
 
